@@ -10,12 +10,12 @@ gsap.registerPlugin(ScrollTrigger);
  * progress: [fadeInStart, fadeOutEnd] as 0–1 fraction of total scroll.
  */
 const beats = [
-  { text: 'Building Intelligent Systems', progress: [0.08, 0.22], size: 'lg', theme: 'holo', className:"font-display text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-none text-white uppercase" },
-  { text: 'Engineering Scalable Experiences', progress: [0.26, 0.40], size: 'lg', theme: 'holo', className:"font-display text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-none text-white uppercase" },
-  { text: 'Designing Robust Architecture', progress: [0.44, 0.58], size: 'lg', theme: 'holo', className:"font-display text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-none text-white uppercase" },
-  { text: 'Backend Development', progress: [0.62, 0.74], size: 'lg', theme: 'holo', className:"font-display text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-none text-white uppercase" },
-  { text: 'Artificial Intelligence', progress: [0.74, 0.84], size: 'lg', theme: 'holo', className:"font-display text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-none text-white uppercase" },
-  { text: 'For The Future', progress: [0.84, 0.92], size: 'lg', theme: 'holo', className:"font-display text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-none text-white uppercase" },
+  { text: 'BUILDING INTELLIGENT SYSTEMS',    progress: [0.08, 0.22], size: 'lg', theme: 'neon-magenta' },
+  { text: 'ENGINEERING SCALABLE PRODUCTS', progress: [0.26, 0.40], size: 'lg', theme: 'neon-magenta' },
+  { text: 'DESIGNING ROBUST ARCHITECTURE',    progress: [0.44, 0.58], size: 'lg', theme: 'neon-magenta' },
+  { text: 'BACKEND DEVELOPMENT',              progress: [0.62, 0.74], size: 'lg', theme: 'neon-magenta' },
+  { text: 'ARTIFICIAL INTELLIGENCE',          progress: [0.74, 0.84], size: 'lg', theme: 'neon-magenta' },
+  { text: 'FOR THE FUTURE',                   progress: [0.84, 0.92], size: 'lg', theme: 'neon-magenta' },
   {
     // Final cinematic beat — matches About.jsx heading alignment
     text: (
@@ -41,29 +41,29 @@ const sizeClasses = {
 };
 
 export default function CinematicVideo({ canvasRef, frames, videoWidth, videoHeight }) {
-  const containerRef = useRef(null);
-  const heroRef = useRef(null);
-  const scrollIndicatorRef = useRef(null);
-  const progressBarRef = useRef(null);
-  const textRefs = useRef([]);
-  const currentFrameRef = useRef(0);
+  const containerRef        = useRef(null);
+  const heroRef             = useRef(null);
+  const scrollIndicatorRef  = useRef(null);
+  const progressBarRef      = useRef(null);
+  const textRefs            = useRef([]);
+  const currentFrameRef     = useRef(0);
   // Tracks the canvas filter state so transition timeline overrides it cleanly
-  const inTransitionRef = useRef(false);
+  const inTransitionRef     = useRef(false);
 
   // ── Draw a specific frame to the canvas ──
   const drawFrame = useCallback((index) => {
     const canvas = canvasRef.current;
     if (!canvas || !frames || !frames[index]) return;
 
-    const ctx = canvas.getContext('2d');
-    const frame = frames[index];
-    const cW = canvas.width;
-    const cH = canvas.height;
-    const fW = frame.width;
-    const fH = frame.height;
-    const scale = Math.max(cW / fW, cH / fH);
-    const drawW = fW * scale;
-    const drawH = fH * scale;
+    const ctx    = canvas.getContext('2d');
+    const frame  = frames[index];
+    const cW     = canvas.width;
+    const cH     = canvas.height;
+    const fW     = frame.width;
+    const fH     = frame.height;
+    const scale  = Math.max(cW / fW, cH / fH);
+    const drawW  = fW * scale;
+    const drawH  = fH * scale;
     ctx.drawImage(frame, (cW - drawW) / 2, (cH - drawH) / 2, drawW, drawH);
   }, [frames]);
 
@@ -77,7 +77,7 @@ export default function CinematicVideo({ canvasRef, frames, videoWidth, videoHei
       let w = window.innerWidth;
       let h = window.innerHeight;
       if (w > MAX_W) { const s = MAX_W / w; w = MAX_W; h = Math.round(h * s); }
-      canvas.width = w;
+      canvas.width  = w;
       canvas.height = h;
       drawFrame(currentFrameRef.current);
     };
@@ -96,12 +96,12 @@ export default function CinematicVideo({ canvasRef, frames, videoWidth, videoHei
   useEffect(() => {
     if (!frames || frames.length === 0) return;
 
-    const totalFrames = frames.length;
-    const vh = window.innerHeight;
+    const totalFrames    = frames.length;
+    const vh             = window.innerHeight;
     // 8 viewports of scroll distance for the video scrub
     const scrollDistance = vh * 8;
     // 1 extra viewport pinned after scrub ends (for the outro transition)
-    const outroDuration = vh;
+    const outroDuration  = vh;
 
     containerRef.current.style.height = `${vh + scrollDistance + outroDuration}px`;
 
@@ -168,10 +168,10 @@ export default function CinematicVideo({ canvasRef, frames, videoWidth, videoHei
         // Only do this while we're NOT in the outro transition
         if (!inTransitionRef.current) {
           if (rawP > 0.78) {
-            const t = (rawP - 0.78) / 0.22;
-            const q = t * t; // quadratic ease-in
+            const t   = (rawP - 0.78) / 0.22;
+            const q   = t * t; // quadratic ease-in
             const blur = 10 * q;
-            const bri = 1 - 0.35 * q;
+            const bri  = 1 - 0.35 * q;
             gsap.set(canvasRef.current, {
               filter: `blur(${blur}px) brightness(${bri})`,
             });
@@ -190,10 +190,10 @@ export default function CinematicVideo({ canvasRef, frames, videoWidth, videoHei
           if (!el) return;
 
           const [start, end] = beat.progress;
-          const isLast = i === beats.length - 1;
-          const fadeInEnd = start + (end - start) * 0.25;
-          const holdEnd = start + (end - start) * 0.75;
-          const p = easedP;
+          const isLast       = i === beats.length - 1;
+          const fadeInEnd    = start + (end - start) * 0.25;
+          const holdEnd      = start + (end - start) * 0.75;
+          const p            = easedP;
 
           if (p < start) {
             gsap.set(el, { opacity: 0, filter: 'blur(12px)', y: 30 });
@@ -233,7 +233,7 @@ export default function CinematicVideo({ canvasRef, frames, videoWidth, videoHei
       scrollTrigger: {
         trigger: containerRef.current,
         start: () => `${outroStart}px top`,
-        end: () => `${outroStart + outroDuration}px top`,
+        end:   () => `${outroStart + outroDuration}px top`,
         scrub: true,
         onEnter: () => { inTransitionRef.current = true; },
         onLeaveBack: () => { inTransitionRef.current = false; },
