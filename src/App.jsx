@@ -249,8 +249,11 @@ export default function App() {
           {/* Post-cinematic portfolio content sections */}
           <div id="portfolio-content" className="relative z-20 bg-transparent" style={{ opacity: 0 }}>
             <About />
+            <div className="h-[50vh]" />
             <Projects />
+            <div className="h-[50vh]" />
             <Timeline />
+            <div className="h-[50vh]" />
             <Contact />
           </div>
         </main>

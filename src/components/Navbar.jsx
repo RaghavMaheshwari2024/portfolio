@@ -65,16 +65,25 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-6 left-1/2 -translate-x-1/2 z-[80] flex items-center justify-between px-6 py-3 rounded-full border transition-all duration-500 w-[90%] max-w-[650px] ${
+      className={`fixed top-5 left-1/2 -translate-x-1/2 z-[80] flex items-center gap-8 px-10 py-5 rounded-2xl border transition-all duration-700 ${
         scrolled
-          ? 'bg-black/40 backdrop-blur-md border-white/10 shadow-[0_8px_32px_rgba(0,240,255,0.05)]'
+          ? 'bg-black/50 backdrop-blur-xl border-white/[0.08] shadow-[0_8px_40px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.03)]'
           : 'bg-transparent border-transparent opacity-0 pointer-events-none'
       }`}
     >
-      <span className="font-display text-sm font-bold tracking-wider gradient-text cursor-pointer" onClick={(e) => handleClick(e, '#home')}>
+      {/* Logo */}
+      <span
+        className="font-display text-base font-bold tracking-wider gradient-text cursor-pointer px-3 py-2 select-none"
+        onClick={(e) => handleClick(e, '#home')}
+      >
         RM
       </span>
-      <div className="flex items-center gap-1 sm:gap-4 md:gap-6">
+
+      {/* Divider */}
+      <div className="w-px h-5 bg-white/10" />
+
+      {/* Nav links */}
+      <div className="flex items-center gap-4">
         {navLinks.map((link) => {
           const id = link.href.substring(1);
           const isActive = activeSection === id;
@@ -83,13 +92,15 @@ export default function Navbar() {
               key={link.name}
               href={link.href}
               onClick={(e) => handleClick(e, link.href)}
-              className={`font-mono text-[10px] sm:text-xs uppercase tracking-wider transition-all duration-300 relative px-2 py-1 ${
-                isActive ? 'text-white font-semibold' : 'text-gray-400 hover:text-white'
+              className={`relative font-mono text-xs uppercase tracking-widest px-5 py-2.5 rounded-xl transition-all duration-300 ${
+                isActive
+                  ? 'text-white bg-white/[0.08] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]'
+                  : 'text-gray-500 hover:text-gray-200 hover:bg-white/[0.04]'
               }`}
             >
               {link.name}
               {isActive && (
-                <span className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full" />
+                <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-4 h-[2px] bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full" />
               )}
             </a>
           );

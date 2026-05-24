@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 export default function Contact() {
   const email = 'raghav.m.iitj@gmail.com'; // placeholder or customize
   const github = 'https://github.com/RaghavMaheshwari2024';
-  const linkedin = 'https://linkedin.com'; // placeholder
+  const linkedin = 'https://www.linkedin.com/in/raghav-maheshwari-359ba8375/';
   const resume = 'https://drive.google.com/file/d/14VtGEH98mU4QFiMOV72j4zOBay2tThDt/view?usp=sharing';
 
   return (
@@ -31,19 +31,19 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="space-y-8"
+          className="flex flex-col items-center gap-8"
         >
-          <p className="font-mono text-xs sm:text-sm tracking-[0.5em] uppercase text-cyan-400">
-            [ 05 // Transmission ]
+          <p className="font-mono text-xs sm:text-sm tracking-[0.5em] uppercase text-cyan-400 mb-8">
+            [ 04 // CONNECT ]
           </p>
           
-          <h2 className="font-display text-4xl sm:text-6xl md:text-8xl font-bold tracking-tight text-white leading-none">
-            LET'S BUILD <br />
+          <h2 className="font-display text-4xl sm:text-6xl md:text-8xl font-bold tracking-tight text-white leading-none text-center">
+            LET'S COLLABORATE <br />
             <span className="gradient-text neon-holo">SOMETHING</span> <br />
             MEANINGFUL.
           </h2>
 
-          <p className="text-gray-400 text-center text-base sm:text-lg md:text-xl font-light max-w-xl mx-auto leading-relaxed tracking-wide pt-4">
+          <p className="text-gray-400 text-base sm:text-lg md:text-xl font-light max-w-xl leading-relaxed tracking-wide pt-4 text-center">
             Looking for opportunities in software engineering, systems optimization, and cutting-edge machine learning. Reach out to collaborate or just talk tech.
           </p>
         </motion.div>

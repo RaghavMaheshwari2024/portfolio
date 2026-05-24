@@ -65,8 +65,8 @@ export default function Timeline() {
           transition={{ duration: 0.8 }}
           className="text-center mb-28 md:mb-36"
         >
-          <p className="font-mono text-xs sm:text-sm tracking-[0.4em] uppercase text-purple-400 mb-4">
-            [ 04 // History ]
+          <p className="font-mono text-xs sm:text-sm tracking-[0.5em] uppercase text-purple-400 mb-8">
+            [ 03 // TIMELINE ]
           </p>
           <h2 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-white">
             JOURNEY & <span className="gradient-text">EXPERIENCE</span>
