@@ -5,6 +5,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import Loader from './components/Loader';
 import CinematicVideo from './components/CinematicVideo';
+import CursorGlow from './components/CursorGlow';
+import Navbar from './components/Navbar';
+import About from './components/About';
+import Projects from './components/Projects';
+import Timeline from './components/Timeline';
+import Contact from './components/Contact';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -165,6 +171,7 @@ export default function App() {
   const [phase, setPhase] = useState('loading'); // 'loading' | 'ready'
   const [progress, setProgress] = useState(0);
   const [frameData, setFrameData] = useState(null);
+  const canvasRef = useRef(null);
 
   // Extract frames during loading
   useEffect(() => {
@@ -215,11 +222,38 @@ export default function App() {
     <>
       {phase === 'loading' && <Loader progress={progress} />}
       {phase === 'ready' && frameData && (
-        <CinematicVideo
-          frames={frameData.frames}
-          videoWidth={frameData.width}
-          videoHeight={frameData.height}
-        />
+        <main className="relative bg-black text-white w-full min-h-screen overflow-x-hidden select-none">
+          {/* Fullscreen canvas at root level to prevent parent coordinates optimization issues */}
+          <canvas
+            ref={canvasRef}
+            className="fixed top-0 left-0 w-screen h-screen pointer-events-none"
+            style={{ zIndex: 0 }}
+          />
+
+          {/* Cursor Ambient Glow follow */}
+          <CursorGlow />
+
+          {/* Floating Glass Navbar */}
+          <Navbar />
+
+          {/* Cinematic Scroll-Driven Video Experience */}
+          <div id="home">
+            <CinematicVideo
+              canvasRef={canvasRef}
+              frames={frameData.frames}
+              videoWidth={frameData.width}
+              videoHeight={frameData.height}
+            />
+          </div>
+
+          {/* Post-cinematic portfolio content sections */}
+          <div className="relative z-20 bg-transparent">
+            <About />
+            <Projects />
+            <Timeline />
+            <Contact />
+          </div>
+        </main>
       )}
     </>
   );

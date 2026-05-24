@@ -12,9 +12,10 @@ gsap.registerPlugin(ScrollTrigger);
 const beats = [
   { text: 'Building Intelligent Systems',        progress: [0.08, 0.22], size: 'lg', theme: 'neon-cyan' },
   { text: 'Engineering Scalable Experiences',     progress: [0.26, 0.40], size: 'lg', theme: 'neon-magenta' },
-  { text: 'Designing With Motion',                progress: [0.44, 0.58], size: 'lg', theme: 'neon-orange' },
-  { text: 'AI • Backend • Distributed Systems',   progress: [0.62, 0.76], size: 'md', theme: 'neon-green' },
-  { text: 'Crafted For The Future',               progress: [0.80, 0.95], size: 'lg', theme: 'neon-holo' },
+  { text: 'Designing Robust Architecture',                progress: [0.44, 0.58], size: 'lg', theme: 'neon-orange' },
+  { text: 'Backend Development',   progress: [0.62, 0.76], size: 'md', theme: 'neon-green' },
+  { text: 'Artificial Intelligence',   progress: [0.76, 0.90], size: 'md', theme: 'neon-magenta' },
+  { text: 'For The Future',               progress: [0.90, 0.95], size: 'lg', theme: 'neon-holo' },
 ];
 
 const sizeClasses = {
@@ -22,8 +23,7 @@ const sizeClasses = {
   md: 'text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight',
 };
 
-export default function CinematicVideo({ frames, videoWidth, videoHeight }) {
-  const canvasRef = useRef(null);
+export default function CinematicVideo({ canvasRef, frames, videoWidth, videoHeight }) {
   const containerRef = useRef(null);
   const heroRef = useRef(null);
   const scrollIndicatorRef = useRef(null);
@@ -184,6 +184,18 @@ export default function CinematicVideo({ frames, videoWidth, videoHeight }) {
       },
     });
 
+    // Fade/Blur Canvas when entering portfolio sections (scroll past video)
+    gsap.to(canvasRef.current, {
+      opacity: 0.12,
+      filter: 'blur(20px) brightness(0.4)',
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: `${window.innerHeight + scrollDistance}px top`,
+        end: `+=${window.innerHeight * 0.8}px`,
+        scrub: true,
+      }
+    });
+
     // Show scroll indicator
     gsap.to(scrollIndicatorRef.current, { opacity: 1, duration: 1, delay: 0.5 });
 
@@ -195,12 +207,6 @@ export default function CinematicVideo({ frames, videoWidth, videoHeight }) {
 
   return (
     <div ref={containerRef} className="relative" style={{ minHeight: '100vh' }}>
-      {/* ===== Fullscreen canvas (replaces <video>) ===== */}
-      <canvas
-        ref={canvasRef}
-        className="fixed top-0 left-0 w-screen h-screen"
-        style={{ zIndex: 1 }}
-      />
 
       {/* ===== Dark overlay ===== */}
       <div className="video-dim" />

@@ -1,0 +1,116 @@
+import { motion } from 'framer-motion';
+
+export default function Contact() {
+  const email = 'raghav.m.iitj@gmail.com'; // placeholder or customize
+  const github = 'https://github.com/RaghavMaheshwari2024';
+  const linkedin = 'https://linkedin.com'; // placeholder
+  const resume = 'https://drive.google.com/file/d/14VtGEH98mU4QFiMOV72j4zOBay2tThDt/view?usp=sharing';
+
+  return (
+    <section
+      id="contact"
+      className="relative min-h-screen w-full flex flex-col justify-start md:justify-center items-center py-20 md:py-32 px-6 overflow-hidden bg-black"
+      style={{ zIndex: 10 }}
+    >
+      {/* Background Matrix/Grid lines */}
+      <div
+        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(0, 240, 255, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 240, 255, 0.3) 1px, transparent 1px)',
+          backgroundSize: '80px 80px',
+        }}
+      />
+
+      {/* Cyberpunk Neon Glow orbs */}
+      <div className="absolute w-[600px] h-[600px] rounded-full filter blur-[180px] bg-gradient-to-br from-cyan-500/10 to-purple-500/5 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+
+      <div className="max-w-5xl w-full text-center relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="space-y-8"
+        >
+          <p className="font-mono text-xs sm:text-sm tracking-[0.5em] uppercase text-cyan-400">
+            [ 05 // Transmission ]
+          </p>
+          
+          <h2 className="font-display text-4xl sm:text-6xl md:text-8xl font-bold tracking-tight text-white leading-none">
+            LET'S BUILD <br />
+            <span className="gradient-text neon-holo">SOMETHING</span> <br />
+            MEANINGFUL.
+          </h2>
+
+          <p className="text-gray-400 text-center text-base sm:text-lg md:text-xl font-light max-w-xl mx-auto leading-relaxed tracking-wide pt-4">
+            Looking for opportunities in software engineering, systems optimization, and cutting-edge machine learning. Reach out to collaborate or just talk tech.
+          </p>
+        </motion.div>
+
+        {/* Contact CTAs */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="flex flex-wrap items-center justify-center gap-6 mt-16"
+        >
+          {/* Email button */}
+          <a
+            href={`mailto:${email}`}
+            className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-black font-bold font-mono text-sm uppercase tracking-widest rounded-full shadow-[0_8px_32px_rgba(0,240,255,0.25)] hover:shadow-[0_12px_40px_rgba(0,240,255,0.45)] hover:scale-[1.03] transition-all duration-300"
+          >
+            Send Message
+          </a>
+
+          {/* Social buttons */}
+          <div className="flex items-center gap-4">
+            {/* GitHub */}
+            <a
+              href={github}
+              target="_blank"
+              rel="noreferrer"
+              className="w-12 h-12 flex items-center justify-center rounded-full border border-white/10 hover:border-cyan-400/50 hover:bg-white/5 transition-all duration-300 group"
+              title="GitHub"
+            >
+              <svg className="w-5 h-5 fill-current text-gray-400 group-hover:text-white" viewBox="0 0 24 24">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </a>
+
+            {/* LinkedIn */}
+            <a
+              href={linkedin}
+              target="_blank"
+              rel="noreferrer"
+              className="w-12 h-12 flex items-center justify-center rounded-full border border-white/10 hover:border-purple-400/50 hover:bg-white/5 transition-all duration-300 group"
+              title="LinkedIn"
+            >
+              <svg className="w-5 h-5 fill-current text-gray-400 group-hover:text-white" viewBox="0 0 24 24">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
+
+            {/* Resume */}
+            <a
+              href={resume}
+              target="_blank"
+              rel="noreferrer"
+              className="px-5 h-12 flex items-center justify-center rounded-full border border-white/10 hover:border-cyan-400/50 hover:bg-white/5 font-mono text-xs text-gray-300 hover:text-white transition-all duration-300"
+              title="Download Resume"
+            >
+              RESUME
+            </a>
+          </div>
+        </motion.div>
+
+        {/* Footer info */}
+        <div className="border-t border-white/5 mt-32 pt-8 flex flex-col sm:flex-row items-center justify-between text-gray-600 font-mono text-[10px] tracking-widest gap-4">
+          <span>DESIGN & DEV BY RAGHAV MAHESHWARI</span>
+          <span>© 2026 // ALL RIGHTS RESERVED</span>
+        </div>
+      </div>
+    </section>
+  );
+}
